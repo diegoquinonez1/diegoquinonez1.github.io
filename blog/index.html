@@ -10,7 +10,7 @@
     <meta name="keywords" content="blog, desarrollo de software, arquitectura, liderazgo técnico, Diego Quiñonez" />
     <meta name="author" content="Diego Quiñonez" />
     <meta name="robots" content="index, follow" />
-    <link rel="stylesheet" href="/assets/css/styles.css" />
+    <link rel="stylesheet" href="/assets/css/styles.css?v=20260313-1" />
     <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
 </head>
 
@@ -18,7 +18,15 @@
     <header class="site-header">
         <nav class="nav container">
             <a class="brand" href="/">← Volver al CV</a>
-            <ul class="nav-links">
+
+            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">
+                <span class="sr-only">Abrir menu</span>
+                <span class="menu-toggle__bar"></span><br>
+                <span class="menu-toggle__bar"></span><br>
+                <span class="menu-toggle__bar"></span>
+            </button>
+
+            <ul id="site-menu" class="nav-links">
                 <li><a href="/">CV</a></li>
                 <li><a href="/blog/">Blog</a></li>
             </ul>
@@ -27,12 +35,16 @@
 
     <main class="section">
         <div class="container">
-            <h1>Blog</h1>
-            <p class="lead">
-                Publicaciones sobre arquitectura, integracion enterprise, plataformas event-driven en Azure y practicas
-                para
-                operar software en produccion.
-            </p>
+            <div class="section-head">
+                <h1>Blog</h1>
+                <p class="lead">
+                    Publicaciones sobre arquitectura, integracion enterprise, plataformas event-driven en Azure y
+                    practicas
+                    para
+                    operar software en produccion.
+                </p>
+                <div class="section-divider"></div>
+            </div>
 
             <div class="cards">
                 <article class="card">
@@ -73,7 +85,7 @@
         </div>
     </footer>
 
-    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/main.js?v=20260313-1"></script>
 </body>
 
 </html>
