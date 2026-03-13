@@ -415,3 +415,118 @@ h3 {
         text-decoration: none;
     }
 }
+
+/* ===== Jerarquia visual + navegacion por secciones ===== */
+
+/* Evita que el header sticky tape el titulo al navegar por anclas */
+.section {
+    scroll-margin-top: 88px;
+    /* ajusta si tu header es mas alto/bajo */
+}
+
+/* Encabezado de seccion consistente */
+.section-head {
+    margin-bottom: 14px;
+}
+
+.section-head p {
+    margin: 6px 0 0;
+    color: var(--muted);
+    max-width: 70ch;
+}
+
+.section-divider {
+    height: 1px;
+    background: var(--border);
+    margin-top: 12px;
+}
+
+/* H2 con barra de acento (marca inicio de seccion al hacer scroll) */
+h2 {
+    position: relative;
+    padding-left: 12px;
+    letter-spacing: .2px;
+}
+
+h2::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: .25em;
+    bottom: .25em;
+    width: 3px;
+    border-radius: 999px;
+    background: var(--brand);
+    opacity: .95;
+}
+
+/* Mobile: mejora jerarquia/espaciado */
+@media (max-width: 900px) {
+    .section {
+        padding: 56px 0;
+    }
+
+    h1 {
+        line-height: 1.08;
+    }
+
+    h2 {
+        font-size: 24px;
+        margin: 0 0 8px;
+    }
+
+    h3 {
+        font-size: 18px;
+        margin: 0 0 6px;
+    }
+
+    .subtitle {
+        font-size: 15px;
+        line-height: 1.4;
+        margin-bottom: 10px;
+    }
+
+    .meta {
+        font-size: 13px;
+        color: var(--muted);
+    }
+
+    /* Tarjetas mas “seccionadas” */
+    .item,
+    .card {
+        padding: 14px;
+    }
+
+    /* Listas mas respirables y escaneables */
+    .bullets {
+        padding-left: 18px;
+    }
+
+    .bullets li {
+        margin: 10px 0;
+    }
+
+    /* tags mas faciles de leer */
+    .tag {
+        font-size: 13px;
+        padding: 7px 10px;
+    }
+}
+
+/* Link activo del menu */
+.nav-links a.is-active {
+    color: var(--text);
+    background: rgba(122, 167, 255, .14);
+    border: 1px solid rgba(122, 167, 255, .25);
+    text-decoration: none;
+}
+
+/* En desktop no queremos borde en el menu (opcional) */
+@media (min-width: 901px) {
+    .nav-links a.is-active {
+        background: transparent;
+        border: 0;
+        text-decoration: underline;
+        text-underline-offset: 6px;
+    }
+}

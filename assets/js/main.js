@@ -33,8 +33,48 @@ if (toggleBtn && menu) {
     if (!clickedInsideMenu && !clickedToggle) setExpanded(false);
   });
 
-  // NUEVO: cerrar con Escape
+  //cerrar con Escape
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") setExpanded(false);
   });
 }
+
+// Resaltar seccion activa en el menu (segun scroll)
+(() => {
+  const menu = document.getElementById("site-menu");
+  if (!menu) return;
+
+  const links = Array.from(menu.querySelectorAll('a[href^="#"]'));
+  const sections = links
+    .map((a) => document.querySelector(a.getAttribute("href")))
+    .filter(Boolean);
+
+  if (links.length === 0 || sections.length === 0) return;
+
+  const setActive = (id) => {
+    links.forEach((a) => {
+      const isActive = a.getAttribute("href") === `#${id}`;
+      a.classList.toggle("is-active", isActive);
+    });
+  };
+
+  // IntersectionObserver: detecta cual seccion esta "dominando" la vista
+  const observer = new IntersectionObserver(
+    (entries) => {
+      // nos quedamos con la seccion visible con mayor interseccion
+      const visible = entries
+        .filter((e) => e.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+      if (visible?.target?.id) setActive(visible.target.id);
+    },
+    {
+      // Ajuste: considera el header sticky
+      root: null,
+      rootMargin: "-30% 0px -60% 0px",
+      threshold: [0.1, 0.2, 0.35, 0.5, 0.65],
+    },
+  );
+
+  sections.forEach((s) => observer.observe(s));
+})();
