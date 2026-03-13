@@ -530,3 +530,40 @@ h2::before {
         text-underline-offset: 6px;
     }
 }
+
+.back-to-top {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    z-index: 30;
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: rgba(11, 18, 32, .85);
+    color: var(--text);
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+}
+
+.back-to-top:hover {
+    background: rgba(255, 255, 255, .06);
+}
+
+:focus-visible {
+    outline: 3px solid rgba(122, 167, 255, .7);
+    outline-offset: 3px;
+    border-radius: 10px;
+}
+
+/* Evita “tap highlight” feo y mejora toque en mobile */
+a,
+button {
+    -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+    /* ... */
+    --muted: #c7d2f3;
+    /* antes: #b8c4e6 */
+}

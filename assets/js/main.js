@@ -78,3 +78,20 @@ if (toggleBtn && menu) {
 
   sections.forEach((s) => observer.observe(s));
 })();
+
+// Back to top
+(() => {
+  const btn = document.querySelector(".back-to-top");
+  if (!btn) return;
+
+  const onScroll = () => {
+    btn.hidden = window.scrollY < 600;
+  };
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  btn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+})();
