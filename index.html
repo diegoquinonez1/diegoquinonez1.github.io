@@ -11,7 +11,7 @@
   <meta name="robots" content="index, follow"> -->
   <title>Diego Quiñonez | Líder Técnico / Software Engineer</title>
   <link rel="stylesheet" href="assets/css/styles.css">
-  <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -19,8 +19,17 @@
   <header class="site-header">
     <nav class="nav container">
       <a href="#start" class="brand">Diego A. Quiñonez Rodriguez</a>
-      <ul class="nav-links">
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">
+        <span class="sr-only">Abrir menu</span>
+        <span class="menu-toggle__bar"></span><br>
+        <span class="menu-toggle__bar"></span><br>
+        <span class="menu-toggle__bar"></span>
+      </button>
+
+      <ul id="site-menu" class="nav-links">
         <li><a href="#about">Sobre mí</a></li>
+        <li><a href="#architecture">Arquitectura</a></li>
         <li><a href="#projects">Proyectos</a></li>
         <li><a href="#skills">Habilidades</a></li>
         <li><a href="#experience">Experiencia</a></li>
@@ -28,8 +37,8 @@
         <li><a href="/blog/">Blog</a></li>
       </ul>
 
-      <a class="btn btn-outline" href="assets/files/Diego-Quiñonez-CV.pdf" target="_blank"
-        rel="noopener noreferrer">Descargar CV</a>
+      <a class="btn btn-outline nav-download" href="assets/files/Diego-Quiñonez-CV.pdf" target="_blank"
+        rel="noopener">Descargar CV</a>
     </nav>
   </header>
 
@@ -117,6 +126,19 @@
       </div>
     </section>
 
+    <section id="architecture" class="section alt">
+      <div class="container">
+        <h2>Arquitectura</h2>
+        <p class="lead">Patrones y componentes que suelo usar para integracion enterprise y plataformas cloud-native.
+        </p>
+        <ul class="bullets">
+          <li><strong>APIM + Service Bus + Functions</strong> (integracion, mensajeria confiable, DLQ y operacion)</li>
+          <li><strong>AKS + Event Hubs</strong> (microservicios, event streaming, escalabilidad)</li>
+          <li><strong>Observability con OpenTelemetry</strong> (trazas, metricas, logs y correlacion)</li>
+        </ul>
+      </div>
+    </section>
+
     <section id="projects" class="section alt">
       <div class="container">
         <h2>Proyectos</h2>
@@ -128,7 +150,10 @@
 
         <div class="cards">
           <article class="card">
-            <h3>Architecture Portfolio (Azure) — Solutions Architect Track</h3>
+            <div class="card-top">
+              <h3>Architecture Portfolio (Azure)</h3>
+              <span class="badge">Principal</span>
+            </div>
             <p>
               Portafolio publico orientado a roles Cloud/Solutions Architect en Azure. Incluye proyectos de integracion
               enterprise
@@ -143,7 +168,8 @@
             </div>
             <ul class="bullets" style="margin-top:10px;">
               <li>Proyecto personal end-to-end: analisis, diseno, documentacion, implementacion y evolucion.</li>
-              <li>Incluye subproyectos: claims-enterprise-azure y fraud-cloudnative-aks (documentados en el repo).</li>
+              <li>Incluye subproyectos: Claims Enterprise (Azure) y Fraud Scoring Cloud-Native (AKS).</li>
+              <li>Demo: en construccion.</li>
             </ul>
           </article>
 
@@ -230,6 +256,11 @@
             </ul>
           </article>
         </div>
+
+        <p style="margin-top:14px; color: var(--muted);">
+          Tambien publico contenido en el <a href="/blog/">blog</a> sobre arquitectura, buenas practicas y liderazgo
+          tecnico.
+        </p>
       </div>
     </section>
 

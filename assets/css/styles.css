@@ -146,7 +146,7 @@ h1 {
 
 .lead {
     margin: 0 0 18px;
-    max-width: 62ch;
+    max-width: 70ch;
     color: var(--text);
     opacity: .95;
 }
@@ -258,6 +258,27 @@ h3 {
     background: rgba(255, 255, 255, .02);
 }
 
+.card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .2px;
+    color: #081226;
+    background: var(--brand);
+    border: 1px solid rgba(0, 0, 0, .08);
+}
+
 .card-links {
     display: flex;
     gap: 12px;
@@ -274,27 +295,12 @@ h3 {
     color: var(--muted);
 }
 
-.contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-    margin-top: 14px;
-}
-
-.contact-item {
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 16px;
-    background: rgba(255, 255, 255, .02);
-}
-
 .site-footer {
     border-top: 1px solid var(--border);
     padding: 18px 0;
     color: var(--muted);
 }
 
-/* Responsive */
 @media (max-width: 900px) {
     .hero-grid {
         grid-template-columns: 1fr;
@@ -311,6 +317,101 @@ h3 {
     .nav-links {
         display: none;
     }
+}
 
-    /* luego puedes agregar menú hamburguesa */
+/* Accesibilidad: texto solo para lectores de pantalla */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Botón hamburguesa (por defecto oculto en desktop) */
+.menu-toggle {
+    display: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, .04);
+    color: var(--text);
+    cursor: pointer;
+    padding: 10px;
+}
+
+.menu-toggle__bar {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--text);
+    border-radius: 999px;
+    margin: 5px 0;
+    opacity: .9;
+}
+
+/* --- Responsive menu --- */
+@media (max-width: 900px) {
+    .nav-download {
+        display: none;
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .grid-2 {
+        grid-template-columns: 1fr;
+    }
+
+    /* Mostrar botón hamburguesa */
+    .menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Convertir el nav en layout que permita dropdown */
+    .nav {
+        position: relative;
+        flex-wrap: wrap;
+    }
+
+    /* Menú colapsado por defecto */
+    .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 12px;
+        padding: 12px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: rgba(11, 18, 32, .92);
+    }
+
+    /* Cuando esté abierto */
+    .nav-links.is-open {
+        display: flex;
+    }
+
+    .nav-links a {
+        color: var(--text);
+        padding: 8px 10px;
+        border-radius: 10px;
+    }
+
+    .nav-links a:hover {
+        background: rgba(255, 255, 255, .06);
+        text-decoration: none;
+    }
 }

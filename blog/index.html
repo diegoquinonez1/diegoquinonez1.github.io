@@ -7,7 +7,11 @@
     <title>Blog | Diego Quiñonez</title>
     <meta name="description"
         content="Blog de Diego Quiñonez: artículos sobre desarrollo de software, arquitectura y liderazgo técnico." />
+    <meta name="keywords" content="blog, desarrollo de software, arquitectura, liderazgo técnico, Diego Quiñonez" />
+    <meta name="author" content="Diego Quiñonez" />
+    <meta name="robots" content="index, follow" />
     <link rel="stylesheet" href="/assets/css/styles.css" />
+    <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -25,31 +29,32 @@
         <div class="container">
             <h1>Blog</h1>
             <p class="lead">
-                Ideas de temas (puedes convertirlos en posts): GitFlow vs Trunk-based, CI/CD en Azure DevOps,
-                event-driven
-                en .NET,
-                y practicas para estabilidad en produccion.
+                Publicaciones sobre arquitectura, integracion enterprise, plataformas event-driven en Azure y practicas
+                para
+                operar software en produccion.
             </p>
 
             <div class="cards">
                 <article class="card">
-                    <h3><a href="/blog/posts/primer-post.html">GitFlow vs Trunk-based: cuando usar cada uno</a></h3>
+                    <h3><a href="/blog/posts/gitflow-vs-trunk.html">GitFlow vs Trunk-based: una guia pragmatica para
+                            equipos
+                            con CI/CD</a></h3>
                     <p class="meta">Pendiente · 6–8 min</p>
-                    <p>Comparacion practica con pros/cons y recomendaciones para equipos con CI/CD.</p>
+                    <p>Cuando usar cada estrategia, trade-offs, y como evitar ramas eternas y releases dolorosos.</p>
                 </article>
 
                 <article class="card">
-                    <h3><a href="/blog/posts/ci-cd-azure-devops.html">CI/CD en Azure DevOps para APIs .NET: pipeline
-                            base</a></h3>
-                    <p class="meta">Pendiente · 8–10 min</p>
-                    <p>Una plantilla de pipeline con build, tests, analisis y despliegue.</p>
-                </article>
-
-                <article class="card">
-                    <h3><a href="/blog/posts/event-driven-dotnet.html">Event-driven en .NET: colas, eventos y
-                            resiliencia</a></h3>
+                    <h3><a href="/blog/posts/integracion-enterprise-azure.html">Integracion enterprise en Azure: APIM +
+                            Service Bus + Functions (DLQ y operacion)</a></h3>
                     <p class="meta">Pendiente · 8–12 min</p>
-                    <p>Como modelar eventos, idempotencia, retries y observabilidad.</p>
+                    <p>Patrones de mensajeria confiable, DLQ, reintentos, idempotencia y observabilidad.</p>
+                </article>
+
+                <article class="card">
+                    <h3><a href="/blog/posts/cloud-native-aks-eventhubs.html">Cloud-native en Azure: AKS + Event Hubs +
+                            OpenTelemetry (trazabilidad distribuida)</a></h3>
+                    <p class="meta">Pendiente · 10–14 min</p>
+                    <p>Como instrumentar trazas/metricas/logs y operar microservicios orientados a eventos.</p>
                 </article>
             </div>
         </div>
