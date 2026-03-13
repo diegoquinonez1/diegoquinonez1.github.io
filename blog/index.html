@@ -1,14 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blog | Diego Quiñonez</title>
+    <meta name="description"
+        content="Blog de Diego Quiñonez: artículos sobre desarrollo de software, arquitectura y liderazgo técnico." />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
 </head>
 
 <body>
+    <header class="site-header">
+        <nav class="nav container">
+            <a class="brand" href="/">← Volver al CV</a>
+            <ul class="nav-links">
+                <li><a href="/">CV</a></li>
+                <li><a href="/blog/">Blog</a></li>
+            </ul>
+        </nav>
+    </header>
 
+    <main class="section">
+        <div class="container">
+            <h1>Blog</h1>
+            <p class="lead">
+                Ideas de temas (puedes convertirlos en posts): GitFlow vs Trunk-based, CI/CD en Azure DevOps,
+                event-driven
+                en .NET,
+                y practicas para estabilidad en produccion.
+            </p>
+
+            <div class="cards">
+                <article class="card">
+                    <h3><a href="/blog/posts/primer-post.html">GitFlow vs Trunk-based: cuando usar cada uno</a></h3>
+                    <p class="meta">Pendiente · 6–8 min</p>
+                    <p>Comparacion practica con pros/cons y recomendaciones para equipos con CI/CD.</p>
+                </article>
+
+                <article class="card">
+                    <h3><a href="/blog/posts/ci-cd-azure-devops.html">CI/CD en Azure DevOps para APIs .NET: pipeline
+                            base</a></h3>
+                    <p class="meta">Pendiente · 8–10 min</p>
+                    <p>Una plantilla de pipeline con build, tests, analisis y despliegue.</p>
+                </article>
+
+                <article class="card">
+                    <h3><a href="/blog/posts/event-driven-dotnet.html">Event-driven en .NET: colas, eventos y
+                            resiliencia</a></h3>
+                    <p class="meta">Pendiente · 8–12 min</p>
+                    <p>Como modelar eventos, idempotencia, retries y observabilidad.</p>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; <span id="year"></span> Diego Quiñonez. Todos los derechos reservados.</p>
+            <ul class="social-links">
+                <li><a href="https://www.linkedin.com/in/diegoquinonez/" target="_blank"
+                        rel="noopener noreferrer">LinkedIn</a>
+                </li>
+                <li><a href="https://github.com/diegoquinonez1" target="_blank" rel="noopener noreferrer">GitHub</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
 </body>
 
 </html>

@@ -16,38 +16,463 @@
 
 <body>
 
-  <header class="header">
-    <nav class="navbar">
-      <div class="container">
-        <a href="#start" class="brand">Diego A. Quiñonez Rodriguez</a>
-        <ul class="nav-links">
-          <li><a href="#about">Sobre mí</a></li>
-          <li><a href="#projects">Proyectos</a></li>
-          <li><a href="#skills">Habilidades</a></li>
-          <li><a href="#experience">Experiencia</a></li>
-          <li><a href="#contact">Contacto</a></li>
-          <li><a href="/blog/">Blog</a></li>
-        </ul>
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="#start" class="brand">Diego A. Quiñonez Rodriguez</a>
+      <ul class="nav-links">
+        <li><a href="#about">Sobre mí</a></li>
+        <li><a href="#projects">Proyectos</a></li>
+        <li><a href="#skills">Habilidades</a></li>
+        <li><a href="#experience">Experiencia</a></li>
+        <li><a href="#contact">Contacto</a></li>
+        <li><a href="/blog/">Blog</a></li>
+      </ul>
 
-        <a class="btn btn-outline" href="assets/files/Diego-Quiñonez-CV.pdf" target="_blank"
-          rel="noopener noreferrer">Descargar CV</a>
-      </div>
+      <a class="btn btn-outline" href="assets/files/Diego-Quiñonez-CV.pdf" target="_blank"
+        rel="noopener noreferrer">Descargar CV</a>
     </nav>
   </header>
 
   <main>
-
     <section id="start" class="section hero">
       <div class="container hero-grid">
         <div>
+          <p class="eyebrow">Hola, soy</p>
+          <h1>Diego Armando Quinonez Rodriguez</h1>
+          <p class="subtitle">Lider Tecnico / Desarrollador de software senior</p>
 
+          <p class="lead">
+            Tech Lead y desarrollador Full Stack en el ecosistema .NET, con experiencia en Azure disenando y liderando
+            soluciones para aplicaciones web, APIs e integraciones. Me especializo en convertir necesidades de negocio
+            en
+            arquitecturas escalables y sostenibles (microservicios, enfoques event-driven), definiendo estandares de
+            ingenieria, buenas practicas y estrategia de versionamiento (GitFlow/Trunk-based) para equipos de alto
+            desempeño.
+          </p>
+
+          <p class="lead" style="margin-top:12px;">
+            Impulso la entrega continua mediante CI/CD en Azure DevOps (y GitHub Actions), con foco en calidad,
+            mantenibilidad y estabilidad en produccion. Me caracteriza un liderazgo empatico y una comunicacion clara
+            para
+            alinear negocio y tecnologia, promover mejora continua y entregar valor de forma consistente en entornos
+            agiles.
+          </p>
+
+          <div class="hero-cta">
+            <a class="btn" href="#projects">Ver proyectos</a>
+            <a class="btn btn-ghost" href="#contact">Contactarme</a>
+          </div>
+
+          <ul class="social">
+            <li><a href="mailto:dquinonezrodriguez@gmail.com">dquinonezrodriguez@gmail.com</a></li>
+            <li><a href="https://www.linkedin.com/in/diegoquinonez/" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://github.com/diegoquinonez1" target="_blank" rel="noopener">GitHub</a></li>
+          </ul>
+        </div>
+
+        <aside class="hero-card">
+          <img class="avatar" src="assets/img/profile.jpg" alt="Foto de Diego Armando Quinonez Rodriguez" />
+          <ul class="quick-facts">
+            <li><strong>Ubicacion:</strong> Bogota, Colombia</li>
+            <li><strong>Enfoque:</strong> .NET + Azure, arquitectura, CI/CD</li>
+            <li><strong>Intereses:</strong> mejora continua, calidad en produccion</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container">
+        <h2>Sobre mi</h2>
+        <p>
+          Lider Tecnico (Tech Lead) y desarrollador Full Stack (.NET) con experiencia en Azure, orientado a
+          arquitecturas
+          escalables
+          (microservicios y event-driven), estandarizacion de ingenieria y entrega continua. Alineo negocio y tecnologia
+          con
+          comunicacion
+          clara y liderazgo empatico, priorizando mantenibilidad, estabilidad en produccion y calidad.
+        </p>
+
+        <div class="grid-2">
+          <div class="item">
+            <h3>Lo que hago</h3>
+            <ul class="bullets">
+              <li>Diseno arquitectura para aplicaciones web, APIs e integraciones en .NET y Azure.</li>
+              <li>Defino estandares: patrones, convenciones, calidad y code review.</li>
+              <li>Impulso CI/CD con Azure DevOps y GitHub Actions.</li>
+              <li>Mejora continua: documentacion tecnica, automatizacion y gestion de deuda tecnica.</li>
+            </ul>
+          </div>
+
+          <div class="item">
+            <h3>Como lidero</h3>
+            <ul class="bullets">
+              <li>Liderazgo empatico, acompanamiento tecnico y desbloqueo del equipo.</li>
+              <li>Comunicacion efectiva con stakeholders y equipos multidisciplinarios.</li>
+              <li>Priorizacion y adaptabilidad segun el contexto (agil/tradicional).</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
 
+    <section id="projects" class="section alt">
+      <div class="container">
+        <h2>Proyectos</h2>
+        <p class="lead">
+          Seleccion de proyectos con foco en arquitectura, integracion enterprise, microservicios, event-driven y
+          plataformas
+          productivas.
+        </p>
+
+        <div class="cards">
+          <article class="card">
+            <h3>Architecture Portfolio (Azure) — Solutions Architect Track</h3>
+            <p>
+              Portafolio publico orientado a roles Cloud/Solutions Architect en Azure. Incluye proyectos de integracion
+              enterprise
+              (APIM, Service Bus, Functions, SQL) y cloud-native/event streaming (AKS, Event Hubs, PostgreSQL,
+              OpenTelemetry).
+            </p>
+            <p class="meta">Stack: Azure (APIM, Service Bus, Functions, AKS, Event Hubs), SQL, PostgreSQL, OpenTelemetry
+            </p>
+            <div class="card-links">
+              <a href="https://github.com/diegoquinonez1/architecture-portfolio-azure" target="_blank"
+                rel="noopener">Repositorio</a>
+            </div>
+            <ul class="bullets" style="margin-top:10px;">
+              <li>Proyecto personal end-to-end: analisis, diseno, documentacion, implementacion y evolucion.</li>
+              <li>Incluye subproyectos: claims-enterprise-azure y fraud-cloudnative-aks (documentados en el repo).</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Transfiya (ecosistema interbancario) — Analisis, diseno e integracion</h3>
+            <p>
+              Participacion en el analisis, diseno tecnico y guia de integracion en la red interbancaria para Transfiya
+              (previo a su evolucion a Bre-B),
+              coordinando integraciones heterogeneas (APIs, lenguajes y arquitecturas) entre entidades financieras y
+              multiples
+              nubes.
+            </p>
+            <p class="meta">Enfoque: integraciones, mensajeria/eventos, seguridad, interoperabilidad multi-plataforma
+            </p>
+            <div class="card-links">
+              <a href="https://wise.com/co/blog/que-es-transfiya-colombia" target="_blank" rel="noopener">Referencia</a>
+            </div>
+            <ul class="bullets" style="margin-top:10px;">
+              <li>Trabajo sobre integraciones interbancarias con variabilidad por banco (AWS/Azure y arquitecturas
+                mixtas).
+              </li>
+              <li>Participacion en conceptos asociados a manejo de moneda digital y conversion a COP con disponibilidad
+                inmediata (segun arquitectura de cada entidad).</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>seguros.aon.com (BAISCO) + AONLink — Plataforma de seguros e integraciones</h3>
+            <p>
+              Plataforma para gestion, administracion y ciclo de vida de seguros; incluye AONLink (venta directa).
+              Integra cotizacion y emision con multiples aseguradoras y servicios externos (pagos, validaciones, listas
+              restrictivas, etc.).
+            </p>
+            <p class="meta">Enfoque: integraciones con aseguradoras, pagos, compliance (SARLAFT), eventos</p>
+            <div class="card-links">
+              <a href="https://seguros.aon.com/BAISCO/v2/" target="_blank" rel="noopener">Sitio</a>
+              <a href="http://seguros.aon.com/BAISCO/v2/online/aonlink/" target="_blank" rel="noopener">AONLink</a>
+            </div>
+            <ul class="bullets" style="margin-top:10px;">
+              <li>Implementacion e integracion con multiples aseguradoras para cotizacion/emision.</li>
+              <li>Integraciones: portal de pagos Wompi, RUNT, SARLAFT/listas restrictivas, flujos basados en eventos.
+              </li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Migracion a Azure — seguros.aon.com (de on-premise a cloud)</h3>
+            <p>
+              Migracion de plataforma desde servidores on-premise a Azure, modernizando componentes hacia servicios
+              nativos
+              cloud
+              para mejorar seguridad, escalabilidad y operacion.
+            </p>
+            <p class="meta">Azure: Key Vault, Storage (archivos), procesamiento de archivos grandes, modernizacion
+              progresiva
+            </p>
+            <ul class="bullets" style="margin-top:10px;">
+              <li>Adopcion de gestion de secretos con Azure Key Vault.</li>
+              <li>Almacenamiento de archivos y procesamiento de archivos grandes con servicios administrados.</li>
+              <li>Estrategia de migracion y evolucion progresiva (sin reescrituras innecesarias).</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Paz del Rio (360) — Microservicios y eventos para portales</h3>
+            <p>
+              Arquitectura basada en microservicios y eventos para portales (comerciales, transportistas), con
+              integraciones y
+              evolucion progresiva de la plataforma. Implementacion de componentes cloud y almacenamiento tipo S3 con
+              MinIO.
+            </p>
+            <p class="meta">Stack: Microservicios, eventos, Docker, Kubernetes, MinIO (S3-like), integraciones
+              SMS/WhatsApp
+            </p>
+            <div class="card-links">
+              <a href="https://360.pazdelrio.com.co/" target="_blank" rel="noopener">Sitio</a>
+            </div>
+            <ul class="bullets" style="margin-top:10px;">
+              <li>Diseno de arquitectura, puntos de integracion, contratos de APIs y hoja de ruta tecnica.</li>
+              <li>Liderazgo del equipo de desarrollo y estandarizacion de practicas.</li>
+              <li>Implementacion de contenedorizacion (Docker), orquestacion (Kubernetes) y redes/reglas de uso de
+                contenedores.</li>
+              <li>Integracion de servicios de mensajeria: SMS y WhatsApp.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="container">
+        <h2>Habilidades</h2>
+
+        <div class="grid-2">
+          <div>
+            <h3>Lenguajes</h3>
+            <div class="tags">
+              <span class="tag">C#</span>
+              <span class="tag">SQL</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">Java</span>
+              <span class="tag">Node.js</span>
+            </div>
+          </div>
+
+          <div>
+            <h3>Backend (.NET) y APIs</h3>
+            <div class="tags">
+              <span class="tag">.NET Core</span>
+              <span class="tag">Web API</span>
+              <span class="tag">Entity Framework</span>
+              <span class="tag">LINQ</span>
+              <span class="tag">REST</span>
+            </div>
+          </div>
+
+          <div>
+            <h3>Arquitectura</h3>
+            <div class="tags">
+              <span class="tag">Microservicios</span>
+              <span class="tag">Clean Architecture</span>
+              <span class="tag">DDD</span>
+              <span class="tag">CQRS</span>
+              <span class="tag">Event-driven</span>
+              <span class="tag">Colas/Mensajeria</span>
+            </div>
+          </div>
+
+          <div>
+            <h3>Frontend</h3>
+            <div class="tags">
+              <span class="tag">Blazor</span>
+              <span class="tag">React</span>
+              <span class="tag">HTML5</span>
+              <span class="tag">CSS3</span>
+              <span class="tag">Bootstrap</span>
+              <span class="tag">Tailwind</span>
+            </div>
+          </div>
+
+          <div>
+            <h3>Cloud / DevOps</h3>
+            <div class="tags">
+              <span class="tag">Azure</span>
+              <span class="tag">Azure DevOps</span>
+              <span class="tag">GitHub Actions</span>
+              <span class="tag">CI/CD</span>
+              <span class="tag">Docker</span>
+            </div>
+          </div>
+
+          <div>
+            <h3>Seguridad y control de versiones</h3>
+            <div class="tags">
+              <span class="tag">OAuth</span>
+              <span class="tag">SAML</span>
+              <span class="tag">OpenID Connect</span>
+              <span class="tag">JWT</span>
+              <span class="tag">RBAC</span>
+              <span class="tag">GitFlow</span>
+              <span class="tag">Trunk-based</span>
+            </div>
+          </div>
+
+          <div>
+            <h3>Competencias</h3>
+            <div class="tags">
+              <span class="tag">Liderazgo</span>
+              <span class="tag">Empatia</span>
+              <span class="tag">Comunicacion efectiva</span>
+              <span class="tag">Priorizacion</span>
+              <span class="tag">Adaptabilidad</span>
+              <span class="tag">Pensamiento sistemico</span>
+              <span class="tag">Gestion de conflictos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section alt">
+      <div class="container">
+        <h2>Experiencia</h2>
+
+        <article class="item">
+          <header class="item-header">
+            <h3>Developer Leader — Tata Consultancy Services</h3>
+            <p class="meta">Jul 2022 – Actualidad · Bogota, Colombia</p>
+          </header>
+          <ul class="bullets">
+            <li>Lidero la definicion de soluciones tecnicas y la arquitectura de software, asegurando escalabilidad,
+              mantenibilidad y alineacion con objetivos del negocio.</li>
+            <li>Guio y acompano al equipo en decisiones tecnicas, buenas practicas y resolucion de bloqueos.</li>
+            <li>Establezco estandares de desarrollo (patrones, convenciones, calidad y revisiones de codigo) para
+              mejorar
+              consistencia y productividad.</li>
+            <li>Defino y gestiono la estrategia de control de versiones y branching (Git, GitFlow), promoviendo un flujo
+              de
+              trabajo ordenado y eficiente.</li>
+            <li>Apoyo en la optimizacion de CI/CD en Azure DevOps (Azure Repos, Pipelines y Releases), automatizando
+              builds,
+              despliegues y validaciones.</li>
+            <li>Impulso mejora continua con code reviews, documentacion tecnica, debt management y automatizacion.</li>
+          </ul>
+        </article>
+
+        <article class="item">
+          <header class="item-header">
+            <h3>Gestor TI Proyectos — AXA COLPATRIA</h3>
+            <p class="meta">Ago 2021 – Jul 2022 · Bogota, Colombia</p>
+          </header>
+          <ul class="bullets">
+            <li>Disene y valide arquitectura basada en .NET, microservicios y Azure, alineada con objetivos de negocio y
+              criterios de escalabilidad/mantenibilidad.</li>
+            <li>Asegure la implementacion end-to-end (front-end, back-end e integraciones), gestionando dependencias y
+              riesgos tecnicos.</li>
+            <li>Priorice el plan de trabajo y coordine ejecucion del equipo con metodologias agiles y tradicionales
+              segun el
+              contexto.</li>
+            <li>Gestione compromisos de entrega y decisiones tecnicas orientadas al valor (tiempo, alcance y costos).
+            </li>
+            <li>Actue como puente entre negocio y tecnologia, traduciendo necesidades funcionales en entregables
+              tecnicos y
+              criterios de aceptacion claros.</li>
+          </ul>
+        </article>
+
+        <article class="item">
+          <header class="item-header">
+            <h3>Analista de desarrollo Java — ACH Colombia</h3>
+            <p class="meta">Ene 2020 – Ago 2021 · Bogota, Colombia</p>
+          </header>
+          <ul class="bullets">
+            <li>Participe en la definicion y diseno tecnico de la solucion Transfiya, con enfasis en integraciones y
+              flujos
+              interbancarios.</li>
+            <li>Disene/estructure servicios y APIs, asi como procesos basados en mensajeria para intercambio confiable
+              de
+              eventos y transacciones.</li>
+            <li>Contribui en lineamientos de seguridad y manejo de informacion sensible, incluyendo persistencia en
+              bases de
+              datos cifradas asociadas a operaciones tipo cripto.</li>
+            <li>Coordine con equipos funcionales y tecnicos para aterrizar requerimientos en disenos implementables y
+              consistentes.</li>
+          </ul>
+        </article>
+
+        <article class="item">
+          <header class="item-header">
+            <h3>Lider Tecnico — Sodexo</h3>
+            <p class="meta">May 2018 – Ene 2020 · Bogota, Colombia</p>
+          </header>
+          <ul class="bullets">
+            <li>Lidere soporte y mantenimiento de aplicaciones en produccion (web, APIs e integraciones), asegurando
+              estabilidad, disponibilidad y continuidad del servicio.</li>
+            <li>Gestione estabilizacion posterior a despliegues, coordinando correcciones y mejoras para reducir
+              incidencias
+              recurrentes.</li>
+            <li>Administre backlog operativo/evolutivo bajo Kanban, priorizando, controlando WIP y asegurando un flujo
+              sostenible.</li>
+            <li>Coordine gestion de incidentes y solicitudes con ServiceNow, asegurando trazabilidad, SLAs y
+              comunicacion
+              oportuna con stakeholders.</li>
+            <li>Planifique y ejecute entregas y tareas tecnicas con Azure DevOps (work items y seguimiento).</li>
+            <li>Realice diagnostico tecnico con Application Insights, promoviendo resolucion por causa raiz y
+              estandarizacion de practicas de mantenimiento.</li>
+            <li>Guie al equipo en decisiones tecnicas para entornos mixtos (monolito/microservicios), minimizando riesgo
+              y
+              asegurando mantenibilidad.</li>
+          </ul>
+        </article>
+
+        <article class="item">
+          <header class="item-header">
+            <h3>Analista IT — AON</h3>
+            <p class="meta">Feb 2017 – May 2018 · Bogota, Colombia</p>
+          </header>
+          <ul class="bullets">
+            <li>Desarrollo full stack en el ecosistema .NET: aplicaciones web, APIs e integraciones.</li>
+            <li>Diseno de soluciones escalables y mantenibles con buenas practicas, patrones y estandares de calidad.
+            </li>
+            <li>Colaboracion con equipos de producto/QA/DevOps para entrega continua y mejora constante.</li>
+            <li>Enfoque en performance, seguridad, pruebas y observabilidad en produccion.</li>
+          </ul>
+        </article>
+
+        <article class="item">
+          <header class="item-header">
+            <h3>Desarrollador .NET — Soluciones 360</h3>
+            <p class="meta">Feb 2015 – Feb 2017 · Bogota, Colombia</p>
+          </header>
+          <ul class="bullets">
+            <li>Desarrollador Senior Full Stack (.NET) en diseno e implementacion end-to-end (front-end, back-end e
+              integraciones).</li>
+            <li>Enfoque en arquitectura mantenible, APIs, calidad de codigo y entrega continua.</li>
+          </ul>
+        </article>
+
+        <article class="item">
+          <header class="item-header">
+            <h3>Desarrollador de Software — GLogic Technology</h3>
+            <p class="meta">Feb 2014 – Jul 2014 · Bogota, Colombia</p>
+          </header>
+          <ul class="bullets">
+            <li>Desarrollo .NET: aplicaciones web, servicios backend, APIs, integraciones y componentes UI.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <h2>Contacto</h2>
+        <p>
+          Email: <a href="mailto:dquinonezrodriguez@gmail.com">dquinonezrodriguez@gmail.com</a>
+        </p>
+        <p>
+          LinkedIn: <a href="https://www.linkedin.com/in/diegoquinonez/" target="_blank"
+            rel="noopener">linkedin.com/in/diegoquinonez</a>
+          <br />
+          GitHub: <a href="https://github.com/diegoquinonez1" target="_blank"
+            rel="noopener">github.com/diegoquinonez1</a>
+        </p>
+      </div>
+    </section>
   </main>
 
-  <footer class="footer">
+  <footer class="site-footer">
     <div class="container">
       <p>&copy; <span id="year"></span> Diego Quiñonez. Todos los derechos reservados.</p>
       <ul class="social-links">
