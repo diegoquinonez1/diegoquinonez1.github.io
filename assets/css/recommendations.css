@@ -1,0 +1,49 @@
+.form-label{ display:block; margin: 10px 0 6px; color: var(--muted); }
+input, textarea{
+  width:100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.03);
+  color: var(--text);
+}
+textarea{ resize: vertical; }
+
+.hp-field{
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.stars{
+  display: inline-flex;
+  flex-direction: row-reverse;
+  gap: 6px;
+  user-select: none;
+}
+.stars input{ display:none; }
+.stars label{
+  font-size: 28px;
+  line-height: 1;
+  color: rgba(255,255,255,.25);
+  cursor: pointer;
+}
+.stars input:checked ~ label,
+.stars label:hover,
+.stars label:hover ~ label{
+  color: #ffd36a;
+}
+
+.rec-list{ display:flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+.rec{
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px;
+  background: rgba(255,255,255,.02);
+}
+.rec-top{ display:flex; justify-content: space-between; gap: 10px; align-items: baseline; }
+.rec-name{ font-weight: 700; }
+.rec-rating{ color: #ffd36a; letter-spacing: 1px; }
+.rec-comment{ margin: 8px 0 0; color: var(--text); opacity: .95; }

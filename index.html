@@ -11,6 +11,7 @@
   <meta name="robots" content="index, follow"> -->
   <title>Diego Qui&ntilde;onez | L&iacute;der T&eacute;cnico / Software Engineer</title>
   <link rel="stylesheet" href="assets/css/styles.css?v=20260313-1">
+  <link rel="stylesheet" href="assets/css/recommendations.css?v=20260317-1">
   <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
 </head>
 
@@ -527,6 +528,62 @@
       </div>
     </section>
 
+    <section id="recommendations" class="section alt">
+      <div class="container">
+        <div class="section-head">
+          <h2>Recomendaciones</h2>
+          <p>Deja una recomendacion. Se publica despues de moderacion.</p>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="grid-2">
+          <div class="item">
+            <h3>Escribe una recomendacion</h3>
+
+            <form id="rec-form">
+              <!-- Honeypot anti-bots (no lo llenes) -->
+              <div class="hp-field" aria-hidden="true">
+                <label>Website <input type="text" name="website" autocomplete="off" tabindex="-1" /></label>
+              </div>
+
+              <label>
+                <span class="form-label">Nombre (opcional)</span>
+                <input name="name" type="text" maxlength="60" />
+              </label>
+
+              <label>
+                <span class="form-label">Calificacion (1 a 5)</span>
+                <div class="stars" role="radiogroup" aria-label="Calificacion de 1 a 5">
+                  <input id="star5" type="radio" name="rating" value="5" required><label for="star5">★</label>
+                  <input id="star4" type="radio" name="rating" value="4"><label for="star4">★</label>
+                  <input id="star3" type="radio" name="rating" value="3"><label for="star3">★</label>
+                  <input id="star2" type="radio" name="rating" value="2"><label for="star2">★</label>
+                  <input id="star1" type="radio" name="rating" value="1"><label for="star1">★</label>
+                </div>
+              </label>
+
+              <label>
+                <span class="form-label">Comentario</span>
+                <textarea name="comment" rows="4" minlength="20" maxlength="800" required></textarea>
+              </label>
+
+              <button class="btn" type="submit">Enviar</button>
+              <p id="rec-status" class="meta" aria-live="polite"></p>
+
+              <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+              <div class="cf-turnstile" data-sitekey="0x4AAAAAACsJqODgIuXzH6gH"></div>
+            </form>
+          </div>
+
+          <div class="item">
+            <h3>Publicadas</h3>
+            <div id="rec-summary" class="meta">Cargando...</div>
+            <div id="rec-list" class="rec-list"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="contact" class="section">
       <div class="container">
         <div class="section-head">
@@ -565,6 +622,7 @@
   </button>
 
   <script src="assets/js/main.js?v=20260313-1"></script>
+  <script src="assets/js/recommendations.js?v=20260317-1"></script>
 </body>
 
 </html>
