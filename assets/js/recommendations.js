@@ -11,6 +11,15 @@
   const LIST_URL = `${FUNCTIONS_BASE_URL}/recommendations-list`;
   const SUBMIT_URL = `${FUNCTIONS_BASE_URL}/recommendations-submit`;
 
+  // anon key (publica) necesaria para invocar Edge Functions cuando estan protegidas
+  const SUPABASE_ANON_KEY =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxiamJ0aHRqaXFubG9ydXJzcW5yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM3MDQzMjQsImV4cCI6MjA4OTI4MDMyNH0.pDdJlCr5rCQzpYySdCi6dOdQx4lu-f4Drzdw-imElOw";
+
+  const commonHeaders = {
+    apikey: SUPABASE_ANON_KEY,
+    Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+  };
+
   const escapeHtml = (str) =>
     str.replaceAll("&", "&amp;")
       .replaceAll("<", "&lt;")
@@ -30,28 +39,35 @@
     const avg = items.reduce((acc, x) => acc + (Number(x.rating) || 0), 0) / items.length;
     summaryEl.textContent = `Promedio: ${avg.toFixed(1)}/5 · Total: ${items.length}`;
 
-    listEl.innerHTML = items.map((r) => {
-      const name = (r.name || "Anonimo").toString();
-      const comment = (r.comment || "").toString();
-      const rating = Math.max(1, Math.min(5, Number(r.rating) || 0));
+    listEl.innerHTML = items
+      .map((r) => {
+        const name = (r.name || "Anonimo").toString();
+        const comment = (r.comment || "").toString();
+        const rating = Math.max(1, Math.min(5, Number(r.rating) || 0));
 
-      return `
-        <div class="rec">
-          <div class="rec-top">
-            <div class="rec-name">${escapeHtml(name)}</div>
-            <div class="rec-rating" aria-label="Calificacion">${stars(rating)}</div>
+        return `
+          <div class="rec">
+            <div class="rec-top">
+              <div class="rec-name">${escapeHtml(name)}</div>
+              <div class="rec-rating" aria-label="Calificacion">${stars(rating)}</div>
+            </div>
+            <p class="rec-comment">${escapeHtml(comment)}</p>
           </div>
-          <p class="rec-comment">${escapeHtml(comment)}</p>
-        </div>
-      `;
-    }).join("");
+        `;
+      })
+      .join("");
   };
 
   const load = async () => {
     try {
       summaryEl.textContent = "Cargando...";
-      const res = await fetch(LIST_URL, { method: "GET" });
+      const res = await fetch(LIST_URL, {
+        method: "GET",
+        headers: commonHeaders,
+      });
+
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
       const data = await res.json();
       render(data.items || []);
     } catch {
@@ -95,16 +111,17 @@
 
     try {
       statusEl.textContent = "Enviando...";
+
       const res = await fetch(SUBMIT_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { ...commonHeaders, "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
 
       const data = await res.json().catch(() => ({}));
 
       if (!res.ok) {
-        // Mensajes mas amigables por tipo de error
+        if (res.status === 401) throw new Error("unauthorized");
         if (res.status === 429) throw new Error("rate_limited");
         if (data?.error === "captcha_failed") throw new Error("captcha_failed");
         throw new Error("submit_failed");
@@ -120,8 +137,10 @@
 
       await load();
     } catch (err) {
-      const msg = (err && err.message) ? err.message : "";
-      if (msg === "rate_limited") {
+      const msg = err?.message || "";
+      if (msg === "unauthorized") {
+        statusEl.textContent = "No autorizado (verifica apikey/Authorization).";
+      } else if (msg === "rate_limited") {
         statusEl.textContent = "Se alcanzo el limite de envios. Intenta mas tarde.";
       } else if (msg === "captcha_failed") {
         statusEl.textContent = "Captcha invalido. Intenta de nuevo.";
