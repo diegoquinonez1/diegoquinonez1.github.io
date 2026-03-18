@@ -528,11 +528,12 @@
       </div>
     </section>
 
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <section id="recommendations" class="section alt">
       <div class="container">
         <div class="section-head">
           <h2>Recomendaciones</h2>
-          <p>Deja una recomendacion. Se publica despues de moderacion.</p>
+          <p>Comparte tu experiencia trabajando conmigo. Se publicara despues de moderacion.</p>
           <div class="section-divider"></div>
         </div>
 
@@ -567,11 +568,13 @@
                 <textarea name="comment" rows="4" minlength="20" maxlength="800" required></textarea>
               </label>
 
+              <!-- Turnstile -->
+              <div class="turnstile-wrap">
+                <div class="cf-turnstile" data-sitekey="0x4AAAAAACsJqODgIuXzH6gH"></div>
+              </div>
+
               <button class="btn" type="submit">Enviar</button>
               <p id="rec-status" class="meta" aria-live="polite"></p>
-
-              <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-              <div class="cf-turnstile" data-sitekey="0x4AAAAAACsJqODgIuXzH6gH"></div>
             </form>
           </div>
 

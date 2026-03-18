@@ -103,7 +103,7 @@
       form.reset();
       await load(); // recarga (seguira mostrando solo approved)
     } catch (err) {
-      statusEl.textContent = "No se pudo enviar. Intenta de nuevo mas tarde.";
+      statusEl.textContent = "No se pudo enviar. Intenta de nuevo mas tarde." + (err.message ? ` (${err.message})` : "");
     }
   });
 
