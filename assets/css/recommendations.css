@@ -1,13 +1,5 @@
+/* ===== Recomendaciones ===== */
 .form-label{ display:block; margin: 10px 0 6px; color: var(--muted); }
-input, textarea{
-  width:100%;
-  padding: 10px 12px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  background: rgba(255,255,255,.03);
-  color: var(--text);
-}
-textarea{ resize: vertical; }
 
 .hp-field{
   position: absolute;
@@ -16,6 +8,19 @@ textarea{ resize: vertical; }
   height: 1px;
   overflow: hidden;
 }
+
+.turnstile-wrap{ margin: 12px 0 10px; }
+
+#recommendations input,
+#recommendations textarea{
+  width:100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.03);
+  color: var(--text);
+}
+#recommendations textarea{ resize: vertical; }
 
 .stars{
   display: inline-flex;
@@ -45,5 +50,5 @@ textarea{ resize: vertical; }
 }
 .rec-top{ display:flex; justify-content: space-between; gap: 10px; align-items: baseline; }
 .rec-name{ font-weight: 700; }
-.rec-rating{ color: #ffd36a; letter-spacing: 1px; }
+.rec-rating{ color: #ffd36a; letter-spacing: 1px; white-space: nowrap; }
 .rec-comment{ margin: 8px 0 0; color: var(--text); opacity: .95; }
