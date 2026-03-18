@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recomendaciones | Diego Quiñonez</title>
+    <meta name="description"
+        content="Recomendaciones y comentarios sobre el trabajo de Diego Quiñonez en liderazgo técnico, arquitectura de software, CI/CD y más." />
+    <meta name="keywords"
+        content="recomendaciones, comentarios, liderazgo técnico, arquitectura de software, CI/CD, Diego Quiñonez" />
+    <meta name="author" content="Diego Quiñonez" />
+    <meta name="robots" content="index, follow" />
+
+
+    <link rel="stylesheet" href="/assets/css/styles.css?v=20260313-1" />
+    <link rel="stylesheet" href="/assets/css/recommendations.css?v=20260318-1" />
+    <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <header class="site-header">
+        <nav class="nav container">
+            <a href="/#start" class="brand">Diego A. Qui&ntilde;onez Rodriguez</a>
+
+            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">
+                <span class="sr-only">Abrir men&uacute;</span>
+                <span class="menu-toggle__bar"></span>
+                <span class="menu-toggle__bar"></span>
+                <span class="menu-toggle__bar"></span>
+            </button>
+
+            <ul id="site-menu" class="nav-links">
+                <li><a href="/#about">Sobre m&iacute;</a></li>
+                <li><a href="/#architecture">Arquitectura</a></li>
+                <li><a href="/#projects">Proyectos</a></li>
+                <li><a href="/#skills">Habilidades</a></li>
+                <li><a href="/#experience">Experiencia</a></li>
+                <li><a href="/#contact">Contacto</a></li>
+                <li><a href="/blog/">Blog</a></li>
+            </ul>
+
+            <a class="btn btn-outline nav-download" href="assets/files/Diego-Qui&ntilde;onez-CV.pdf" target="_blank"
+                rel="noopener">Descargar CV</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="section alt">
+            <div class="container">
+                <div class="section-head">
+                    <h1 style="margin:0;">Recomendaciones</h1>
+                    <p class="lead">Comentarios aprobados y calificaciones sobre mi trabajo.</p>
+                    <div class="section-divider"></div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="item">
+                        <h3>Resumen</h3>
+                        <div id="rec-metrics" class="rec-metrics">Cargando...</div>
+                    </div>
+
+                    <div class="item">
+                        <div class="rec-search">
+                            <label class="rec-search__label" for="rec-q">
+                                <span class="form-label">Por nombre o texto</span>
+                            </label>
+
+                            <div class="rec-search__control">
+                                <span class="rec-search__icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" focusable="false"
+                                        aria-hidden="true">
+                                        <path
+                                            d="M10.5 3a7.5 7.5 0 1 0 4.57 13.45l4.49 4.49a1 1 0 0 0 1.41-1.41l-4.49-4.49A7.5 7.5 0 0 0 10.5 3Zm0 2a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11Z"
+                                            fill="currentColor" />
+                                    </svg>
+                                </span>
+
+                                <input id="rec-q" type="search" placeholder="Ej: liderazgo, arquitectura, CI/CD..."
+                                    autocomplete="off" />
+                                <button id="rec-clear" class="rec-search__clear" type="button">Limpiar</button>
+                            </div>
+
+                            <p class="meta rec-search__hint">Tip: escribe 2–3 palabras para filtrar más rápido.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top:14px;">
+                    <div id="rec-list" class="rec-list"></div>
+
+                    <div class="rec-actions">
+                        <button id="rec-more" class="btn btn-outline" type="button">Cargar más</button>
+                        <a class="btn btn-ghost" href="/#recommendations">Volver al Home</a>
+                    </div>
+
+                    <p id="rec-status" class="meta" aria-live="polite"></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; <span id="year"></span> Diego Qui&ntilde;onez. Todos los derechos reservados.</p>
+            <ul class="social-links">
+                <li><a href="https://www.linkedin.com/in/diegoquinonez/" target="_blank"
+                        rel="noopener noreferrer">LinkedIn</a>
+                </li>
+                <li><a href="https://github.com/diegoquinonez1" target="_blank" rel="noopener noreferrer">GitHub</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
+    <button class="back-to-top" type="button" aria-label="Volver arriba" hidden>
+        &uarr;
+    </button>
+
+    <script src="/assets/js/main.js?v=20260313-1"></script>
+    <script src="/assets/js/recommendations.js?v=20260317-2"></script>
+</body>
+
+</html>
