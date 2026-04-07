@@ -214,6 +214,122 @@ h3 {
     margin: 12px 0;
 }
 
+.article-page {
+    padding-top: 40px;
+}
+
+.article-shell {
+    width: min(860px, calc(100% - 32px));
+    padding: 28px;
+    margin-inline: auto;
+}
+
+.article-content {
+    line-height: 1.8;
+}
+
+.article-content h1,
+.article-content .meta,
+.article-content h2,
+.article-content h3,
+.article-content p,
+.article-content ol,
+.article-content ul,
+.article-content hr,
+.article-content .table-wrap,
+.article-content pre {
+    max-width: 70ch;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.article-content h1 {
+    text-wrap: balance;
+    margin-bottom: 14px;
+}
+
+.article-content h2 {
+    margin-top: 36px;
+}
+
+.article-content h3 {
+    margin-top: 24px;
+    margin-bottom: 8px;
+}
+
+.article-content p,
+.article-content ol,
+.article-content ul {
+    color: var(--text);
+}
+
+.article-content ol,
+.article-content ul {
+    padding-left: 1.4rem;
+}
+
+.article-content li + li {
+    margin-top: 8px;
+}
+
+.article-content pre,
+.article-content code {
+    font-family: Consolas, "Courier New", monospace;
+}
+
+.article-content pre {
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, .04);
+    line-height: 1.5;
+}
+
+.article-content :not(pre) > code {
+    padding: 2px 6px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, .06);
+}
+
+.article-content hr {
+    border: 0;
+    border-top: 1px solid var(--border);
+    margin-top: 32px;
+    margin-bottom: 32px;
+}
+
+.table-wrap {
+    max-width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, .03);
+}
+
+.table-wrap table {
+    width: 100%;
+    min-width: 640px;
+    border-collapse: collapse;
+}
+
+.table-wrap th,
+.table-wrap td {
+    padding: 12px 14px;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid var(--border);
+}
+
+.table-wrap thead th {
+    background: rgba(255, 255, 255, .05);
+}
+
+.table-wrap tbody tr:last-child td {
+    border-bottom: 0;
+}
+
 .bullets {
     margin: 10px 0 0;
     color: var(--text);
@@ -304,6 +420,27 @@ h3 {
 @media (max-width: 900px) {
     .hero-grid {
         grid-template-columns: 1fr;
+    }
+
+    .article-page {
+        padding-top: 24px;
+    }
+
+    .article-shell {
+        padding: 18px;
+    }
+
+    .article-content h1,
+    .article-content .meta,
+    .article-content h2,
+    .article-content h3,
+    .article-content p,
+    .article-content ol,
+    .article-content ul,
+    .article-content hr,
+    .article-content .table-wrap,
+    .article-content pre {
+        max-width: 100%;
     }
 
     .cards {

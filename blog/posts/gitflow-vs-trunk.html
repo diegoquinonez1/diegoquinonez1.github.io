@@ -28,35 +28,441 @@
         </nav>
     </header>
 
-    <main class="section">
-        <article class="container item">
-            <h1>GitFlow vs Trunk-based: una gu&iacute;a pragm&aacute;tica para equipos con CI/CD</h1>
-            <p class="meta">Pendiente &middot; Por Diego Qui&ntilde;onez</p>
-            <p>Placeholder. Aqu&iacute; publicar&aacute;s tu contenido.</p>
+    <main class="section article-page">
+        <article class="container item article-shell article-content">
+            <h1>Gitflow vs Trunk-Based: gu&iacute;a pragm&aacute;tica para colaborar, integrar y desplegar con CI/CD
+            </h1>
+            <p class="meta">2026-04-07 &middot; Por Diego Qui&ntilde;onez</p>
+
+            <h2>Introducci&oacute;n</h2>
+            <p>
+                Empecemos por lo b&aacute;sico. Para profundizar en estas estrategias de ramificaci&oacute;n
+                (branching strategies), conviene tener claros dos conceptos fundamentales:
+            </p>
+            <ol>
+                <li>qu&eacute; es un sistema de control de versiones, y</li>
+                <li>qu&eacute; es una estrategia de ramificaci&oacute;n.</li>
+            </ol>
+            <p>
+                Adem&aacute;s, como este documento est&aacute; orientado a equipos que trabajan con CI/CD,
+                vale la pena alinear una definici&oacute;n breve:
+            </p>
+
+            <h3>CI/CD (definici&oacute;n breve)</h3>
+            <ul>
+                <li>
+                    <strong>CI (Integraci&oacute;n Continua):</strong> integrar cambios con frecuencia y validarlos
+                    autom&aacute;ticamente (por ejemplo, build/compilaci&oacute;n cuando aplique y pruebas
+                    automatizadas)
+                    para detectar problemas temprano.
+                </li>
+                <li>
+                    <strong>CD (Entrega/Despliegue Continuo):</strong> capacidad de entregar cambios con alta frecuencia
+                    y bajo riesgo mediante automatizaci&oacute;n, controles y buenas pr&aacute;cticas operativas
+                    (por ejemplo, feature flags, observabilidad y despliegues repetibles).
+                </li>
+            </ul>
+
+            <h2>Sistemas de control de versiones</h2>
+            <p>
+                Son sistemas que permiten registrar la evoluci&oacute;n de los archivos que forman parte de un proyecto
+                a lo largo del tiempo. En t&eacute;rminos t&eacute;cnicos, un sistema de control de versiones gestiona
+                &ldquo;instant&aacute;neas&rdquo; de los cambios (commits) y las relaciones entre ellas, normalmente
+                representadas
+                como un grafo (un DAG: grafo ac&iacute;clico dirigido). Esto permite entender c&oacute;mo se deriva una
+                versi&oacute;n de otra, comparar estados y reconstruir el historial.
+            </p>
+
+            <p><strong>Caracter&iacute;sticas a alto nivel:</strong></p>
+            <ol>
+                <li>Historial de cambios usando metadatos (autor, fecha, mensaje, etc.).</li>
+                <li>Comparaci&oacute;n de estados (diferencias entre versiones).</li>
+                <li>Reversi&oacute;n (volver a un estado anterior con seguridad).</li>
+                <li>Trabajo concurrente (m&uacute;ltiples personas trabajando en paralelo).</li>
+                <li>Trazabilidad (auditor&iacute;a: qu&eacute; cambi&oacute;, cu&aacute;ndo y por qu&eacute;).</li>
+            </ol>
+
+            <h2>Estrategias de ramificaci&oacute;n</h2>
+            <p>
+                Definen c&oacute;mo se organizan y utilizan las ramas durante el ciclo de vida del desarrollo,
+                estableciendo reglas y patrones dentro del sistema de control de versiones. En la pr&aacute;ctica,
+                una estrategia de ramificaci&oacute;n es un conjunto de convenciones sobre el grafo de cambios:
+                qu&eacute; tipos de ramas existen, cu&aacute;l es su prop&oacute;sito, y bajo qu&eacute; condiciones
+                se integran cambios (merge) y en qu&eacute; orden.
+            </p>
+
+            <p><strong>Caracter&iacute;sticas a alto nivel:</strong></p>
+            <ol>
+                <li>Aislamiento de trabajos (funcionalidades, correcci&oacute;n de errores, experimentos, despliegues,
+                    etc.).</li>
+                <li>Control de estabilidad (qu&eacute; rama representa &ldquo;lo estable&rdquo; o &ldquo;lo
+                    liberado&rdquo;).</li>
+                <li>Integraci&oacute;n (cu&aacute;ndo y c&oacute;mo convergen los cambios).</li>
+                <li>Coexistencia de diferentes versiones del mismo producto (si aplica).</li>
+            </ol>
+
+            <h2>Veamos un ejemplo (met&aacute;fora)</h2>
+            <p>
+                &ldquo;Trabajar con ramas es como tener copias controladas del producto para probar cambios sin romper
+                la
+                versi&oacute;n que usan los clientes.&rdquo;
+            </p>
+
+            <h3>Rama principal (lo que est&aacute; en producci&oacute;n)</h3>
+            <pre><code>[ A ]&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;[ E ]&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;[ F ]
+  ^                    ^                    ^
+Versi&oacute;n estable     Cambio 1            Cambio 2</code></pre>
+
+            <p>
+                &ldquo;Creamos una copia controlada de la versi&oacute;n actual, donde el equipo puede tocar y probar
+                sin
+                afectar lo que est&aacute; en producci&oacute;n.&rdquo;
+            </p>
+
+            <h3>Rama principal (producci&oacute;n) + rama experimental</h3>
+            <pre><code>[ A ]&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;[ E ]&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;[ F ]
+
+   \
+    \
+     \
+      &#9660;
+Rama EXPERIMENTAL (idea / funcionalidad nueva)
+
+      [ B ]&#9472;&#9472;[ C ]&#9472;&#9472;[ D ]</code></pre>
+
+            <p>&ldquo;Podemos desarrollar una funcionalidad compleja sin frenar las mejoras del d&iacute;a a
+                d&iacute;a.&rdquo;</p>
+
+            <h3>La rama principal sigue avanzando mientras la rama experimental progresa</h3>
+            <pre><code>Rama PRINCIPAL (producci&oacute;n)
+
+[ A ]&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;[ E ]&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;[ F ]
+                         ^                    ^
+                     Cambio general       Cambio general
+
+   \
+    \
+     \
+      &#9660;
+Rama EXPERIMENTAL
+
+      [ B ]&#9472;&#9472;[ C ]&#9472;&#9472;[ D ]</code></pre>
+
+            <p>
+                &ldquo;Solo cuando la nueva funcionalidad est&aacute; madura y probada, la subimos a la autopista
+                principal
+                para que llegue a los clientes.&rdquo;
+            </p>
+
+            <h3>La funcionalidad madura se integra a la rama principal</h3>
+            <pre><code>Rama PRINCIPAL (producci&oacute;n)
+
+[ A ]&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;[ E ]&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;[ F ]&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;[ H ]
+                         ^                    ^                           ^
+                     Cambio general       Cambio general               Nueva versi&oacute;n
+                                                                          (con funcionalidad)
+
+   \
+    \
+     \
+      &#9660;
+Rama EXPERIMENTAL
+
+      [ B ]&#9472;&#9472;[ C ]&#9472;&#9472;[ D ]&#9472;&#9472;[ G ]
+                        ^
+          Versi&oacute;n final probada y lista para incorporarse</code></pre>
+
+            <h2>De la teor&iacute;a a la pr&aacute;ctica: Trunk-Based Development</h2>
+
+            <h2>Trunk-Based Development (TBD)</h2>
+
+            <h3>Qu&eacute; es</h3>
+            <p>
+                Estrategia de ramificaci&oacute;n donde el desarrollo se centra en una rama principal
+                (por ejemplo, <code>main</code>/<code>trunk</code>) a la que se integran cambios peque&ntilde;os y
+                frecuentes, manteni&eacute;ndola en un estado siempre integrable (e idealmente desplegable).
+            </p>
+
+            <h3>C&oacute;mo se trabaja</h3>
+            <ul>
+                <li>El trabajo se divide en incrementos peque&ntilde;os para integrarse r&aacute;pidamente al trunk.
+                </li>
+                <li>Las ramas, si existen, son de corta duraci&oacute;n y se fusionan pronto para evitar divergencia.
+                </li>
+                <li>La calidad se valida continuamente mediante CI (build/compilaci&oacute;n cuando aplique, pruebas
+                    automatizadas y pol&iacute;ticas de revisi&oacute;n).</li>
+            </ul>
+
+            <h3>Pr&aacute;cticas habilitadoras t&iacute;picas</h3>
+            <ul>
+                <li>Pruebas automatizadas como red de seguridad (unitarias + integraci&oacute;n + regresi&oacute;n
+                    b&aacute;sica).</li>
+                <li>Feature flags/toggles para integrar funcionalidad incompleta sin activarla para usuarios finales.
+                </li>
+                <li>Monitoreo y &ldquo;reparaci&oacute;n r&aacute;pida&rdquo;: si algo se rompe, se corrige con
+                    prioridad alta.</li>
+            </ul>
+
+            <h3>Ventajas (por qu&eacute; negocio la elige)</h3>
+            <ul>
+                <li>Reduce riesgo por lotes peque&ntilde;os: menos sorpresas al final y problemas m&aacute;s
+                    f&aacute;ciles de aislar.</li>
+                <li>Acelera el <em>time-to-market</em> cuando se busca entregar valor con frecuencia.</li>
+                <li>Menos fricci&oacute;n de integraci&oacute;n entre equipos (menos conflictos grandes y menos
+                    &ldquo;merge
+                    hell&rdquo;).</li>
+            </ul>
+
+            <h3>Desaf&iacute;os / costos</h3>
+            <ul>
+                <li>Requiere disciplina y automatizaci&oacute;n; sin esto, la rama principal puede convertirse en un
+                    cuello de botella.</li>
+                <li>Cambios grandes deben partirse en entregas incrementales o controlarse con flags, lo que puede
+                    requerir inversi&oacute;n y madurez t&eacute;cnica.</li>
+            </ul>
+
+            <h3>Cu&aacute;ndo suele encajar</h3>
+            <ul>
+                <li>Organizaciones que quieren integrar y validar continuamente, reduciendo ciclos largos de
+                    integraci&oacute;n.</li>
+                <li>Equipos que apuntan a entregas frecuentes o a mantener el producto siempre &ldquo;listo para
+                    desplegar&rdquo;.
+                </li>
+            </ul>
+
+            <h3>Cu&aacute;ndo puede no convenir</h3>
+            <ul>
+                <li>Si el ecosistema no permite automatizaci&oacute;n suficiente o la correcci&oacute;n r&aacute;pida no
+                    es viable.</li>
+                <li>Si por restricciones externas se necesita aislar por per&iacute;odos largos trabajo que no puede
+                    integrarse al trunk (ni siquiera con flags).</li>
+            </ul>
+
+            <h3>Referencia pr&aacute;ctica ampliamente usada</h3>
+            <p>
+                <a href="https://trunkbaseddevelopment.com/" target="_blank" rel="noopener noreferrer">
+                    https://trunkbaseddevelopment.com/
+                </a>
+                (gu&iacute;a de la pr&aacute;ctica; no es un est&aacute;ndar formal, pero s&iacute; una referencia
+                ampliamente adoptada).
+            </p>
+
+            <h3>Gu&iacute;as pr&aacute;cticas (autor&iacute;a del consultor)</h3>
+            <p>
+                He construido estas gu&iacute;as y plantillas en GitHub (enlaces que empiezan con
+                <strong>https://github.com/diegoquinonez1/</strong>).
+                Sirven al lector como <strong>complemento pr&aacute;ctico</strong> a este documento: permiten ver
+                c&oacute;mo se aplican estas
+                estrategias en un flujo real con <strong>CI</strong> (y CD opcional), con ejemplos paso a paso.
+            </p>
+            <ul>
+                <li>
+                    Gu&iacute;a para CI/CD (construida por m&iacute;):
+                    <a href="https://github.com/diegoquinonez1/tbd-workshop-template/blob/main/README.md?plain=1"
+                        target="_blank" rel="noopener noreferrer">
+                        https://github.com/diegoquinonez1/tbd-workshop-template/blob/main/README.md?plain=1
+                    </a>
+                </li>
+                <li>
+                    Gu&iacute;a para t&eacute;cnicos (cheat sheet, construida por m&iacute;):
+                    <a href="https://github.com/diegoquinonez1/tbd-workshop-template/blob/main/CHEATSHEET-TBD.md?plain=1"
+                        target="_blank" rel="noopener noreferrer">
+                        https://github.com/diegoquinonez1/tbd-workshop-template/blob/main/CHEATSHEET-TBD.md?plain=1
+                    </a>
+                </li>
+            </ul>
+
+            <hr />
+
+            <h2>Gitflow</h2>
+
+            <h3>Qu&eacute; es</h3>
+            <p>
+                Modelo de ramificaci&oacute;n estructurado con ramas con roles definidos para separar:
+                producci&oacute;n,
+                integraci&oacute;n de desarrollo, preparaci&oacute;n de releases y correcciones urgentes. Su objetivo es
+                facilitar la gesti&oacute;n de releases versionados y el mantenimiento en paralelo.
+            </p>
+
+            <h3>C&oacute;mo se trabaja</h3>
+            <ul>
+                <li><strong>main/master:</strong> representa el estado liberado/producci&oacute;n.</li>
+                <li><strong>develop:</strong> integra trabajo destinado al pr&oacute;ximo release.</li>
+                <li><strong>Ramas de soporte:</strong>
+                    <ul>
+                        <li><strong>feature:</strong> desarrollo aislado de funcionalidades.</li>
+                        <li><strong>release:</strong> estabilizaci&oacute;n y preparaci&oacute;n de una versi&oacute;n
+                            espec&iacute;fica.</li>
+                        <li><strong>hotfix:</strong> correcciones urgentes sobre producci&oacute;n que luego se
+                            reintegran al flujo para no perderlas.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>Pr&aacute;cticas habilitadoras t&iacute;picas</h3>
+            <ul>
+                <li>Criterios de &ldquo;listo para release&rdquo; y ventanas de estabilizaci&oacute;n.</li>
+                <li>Gesti&oacute;n expl&iacute;cita de versiones (tags/versionado, notas de release).</li>
+                <li>Proceso claro para hotfix y propagaci&oacute;n de correcciones (por ejemplo, de vuelta a
+                    <code>develop</code>).
+                </li>
+            </ul>
+
+            <h3>Ventajas (por qu&eacute; negocio la elige)</h3>
+            <ul>
+                <li>Proceso entendible para organizaciones con releases formales y control de cambios.</li>
+                <li>Permite estabilizar una versi&oacute;n sin frenar el trabajo futuro (release branch).</li>
+                <li>Ordena el soporte de producci&oacute;n con hotfixes bien definidos.</li>
+            </ul>
+
+            <h3>Desaf&iacute;os / costos</h3>
+            <ul>
+                <li>M&aacute;s ramas, merges y coordinaci&oacute;n: m&aacute;s overhead operativo.</li>
+                <li>La integraci&oacute;n puede ocurrir m&aacute;s tarde que en TBD, aumentando el riesgo de conflictos
+                    tard&iacute;os.</li>
+                <li>Si se aplica r&iacute;gidamente, puede dificultar una entrega continua muy frecuente.</li>
+            </ul>
+
+            <h3>Cu&aacute;ndo suele encajar</h3>
+            <ul>
+                <li>Productos con versiones expl&iacute;citas, releases planificados y necesidad de mantenimiento
+                    paralelo.</li>
+                <li>Contextos con gates de aprobaci&oacute;n, auditor&iacute;a o ventanas de liberaci&oacute;n.</li>
+            </ul>
+
+            <h3>Cu&aacute;ndo puede no convenir</h3>
+            <ul>
+                <li>Cuando la prioridad es integrar y desplegar constantemente (CD) y minimizar ramas y ciclos largos de
+                    integraci&oacute;n.</li>
+                <li>En contextos de entrega muy frecuente, Gitflow puede introducir overhead por la cantidad de ramas y
+                    merges, por lo que modelos m&aacute;s simples suelen reducir fricci&oacute;n.</li>
+            </ul>
+
+            <h3>Referencia &ldquo;cl&aacute;sica&rdquo; (original)</h3>
+            <p>
+                <a href="https://nvie.com/posts/a-successful-git-branching-model/" target="_blank"
+                    rel="noopener noreferrer">
+                    https://nvie.com/posts/a-successful-git-branching-model/
+                </a>
+            </p>
+
+            <h3>Gu&iacute;as pr&aacute;cticas (autor&iacute;a del consultor)</h3>
+            <p>
+                He construido estas gu&iacute;as y plantillas en GitHub (enlaces que empiezan con
+                <strong>https://github.com/diegoquinonez1/</strong>).
+                Sirven al lector como <strong>complemento pr&aacute;ctico</strong> a este documento: permiten ver
+                c&oacute;mo se aplican estas
+                estrategias en un flujo real con <strong>CI</strong> (y CD opcional), con ejemplos paso a paso.
+            </p>
+            <ul>
+                <li>
+                    Gu&iacute;a para CI/CD (construida por m&iacute;):
+                    <a href="https://github.com/diegoquinonez1/gitflow-daily-tasks-workshop/blob/develop/README.md?plain=1"
+                        target="_blank" rel="noopener noreferrer">
+                        https://github.com/diegoquinonez1/gitflow-daily-tasks-workshop/blob/develop/README.md?plain=1
+                    </a>
+                </li>
+                <li>
+                    Gu&iacute;a para t&eacute;cnicos (cheat sheet, construida por m&iacute;):
+                    <a href="https://github.com/diegoquinonez1/gitflow-daily-tasks-workshop/blob/develop/CHEATSHEET.md?plain=1"
+                        target="_blank" rel="noopener noreferrer">
+                        https://github.com/diegoquinonez1/gitflow-daily-tasks-workshop/blob/develop/CHEATSHEET.md?plain=1
+                    </a>
+                </li>
+            </ul>
+
+            <hr />
+
+            <h2>Tabla comparativa</h2>
+
+            <div class="table-wrap" role="region" aria-label="Tabla comparativa Gitflow vs Trunk-Based" tabindex="0">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Aspecto</th>
+                            <th>Trunk-Based Development</th>
+                            <th>Gitflow</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Enfoque</strong></td>
+                            <td>Integraci&oacute;n continua en una rama principal; lotes peque&ntilde;os</td>
+                            <td>Flujo estructurado por tipos de ramas; orden y control por release</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Objetivo de negocio t&iacute;pico</strong></td>
+                            <td>Reducir riesgo y acelerar entrega frecuente</td>
+                            <td>Gestionar releases versionados y soporte en paralelo</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Estructura</strong></td>
+                            <td>1 rama principal + ramas muy cortas (si existen)</td>
+                            <td>main + develop + feature/release/hotfix</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Integraci&oacute;n de cambios</strong></td>
+                            <td>Muy frecuente (idealmente diaria o varias veces al d&iacute;a)</td>
+                            <td>Por etapas: features &rarr; develop &rarr; release &rarr; main</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ventajas clave</strong></td>
+                            <td>Feedback temprano; menos conflictos grandes; facilita CI/CD</td>
+                            <td>Claridad de proceso; estabilizaci&oacute;n de versiones; hotfixes definidos</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Costos / riesgos</strong></td>
+                            <td>Exige pruebas/automatizaci&oacute;n y disciplina; trunk debe mantenerse sano</td>
+                            <td>M&aacute;s overhead; integraci&oacute;n m&aacute;s tard&iacute;a; mayor complejidad de
+                                merges</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cu&aacute;ndo usar</strong></td>
+                            <td>Cuando se busca reducir ciclos de integraci&oacute;n y mantener el producto siempre
+                                &ldquo;listo&rdquo;</td>
+                            <td>Cuando hay releases formales, versionado, mantenimiento paralelo y control fuerte</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cu&aacute;ndo evitar</strong></td>
+                            <td>Si no se puede sostener automatizaci&oacute;n y correcci&oacute;n r&aacute;pida</td>
+                            <td>Si se busca CD fuerte y ciclos muy cortos de entrega</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Escenarios t&iacute;picos</strong></td>
+                            <td>Equipos orientados a flujo continuo de cambios y validaci&oacute;n constante</td>
+                            <td>Productos con ventanas de release, m&uacute;ltiples versiones soportadas, hotfix
+                                frecuentes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Requisitos t&eacute;cnicos comunes</strong></td>
+                            <td>CI s&oacute;lida; pruebas automatizadas; feature flags; observabilidad y reacci&oacute;n
+                                r&aacute;pida</td>
+                            <td>Proceso de release; control de versiones; pol&iacute;ticas claras de
+                                merge/promoci&oacute;n</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </article>
     </main>
 
     <footer class="site-footer">
         <div class="container">
-            <small>&copy; <span id="year"></span> Diego Armando Qui&ntilde;onez Rodr&iacute;guez.</small>
-        </div>
-    </footer>
-
-    <footer class="site-footer">
-        <div class="container">
             <p>&copy; <span id="year"></span> Diego Qui&ntilde;onez. Todos los derechos reservados.</p>
             <ul class="social-links">
-                <li><a href="https://www.linkedin.com/in/diegoquinonez/" target="_blank"
+                <li>
+                    <a href="https://www.linkedin.com/in/diegoquinonez/" target="_blank"
                         rel="noopener noreferrer">LinkedIn</a>
                 </li>
-                <li><a href="https://github.com/diegoquinonez1" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <li>
+                    <a href="https://github.com/diegoquinonez1" target="_blank" rel="noopener noreferrer">GitHub</a>
                 </li>
             </ul>
         </div>
     </footer>
 
     <button class="back-to-top" type="button" aria-label="Volver arriba" hidden>
-        ↑
+        &uarr;
     </button>
 
     <script src="../../assets/js/main.js?v=20260313-1"></script>
