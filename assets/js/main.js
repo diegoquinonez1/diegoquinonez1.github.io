@@ -79,6 +79,100 @@ if (toggleBtn && menu) {
   sections.forEach((s) => observer.observe(s));
 })();
 
+// TOC (Tabla de Contenidos) en artículos
+(() => {
+  const tocToggle = document.querySelector(".toc-toggle");
+  const tocMenu = document.getElementById("toc-menu");
+
+  if (!tocToggle || !tocMenu) return;
+
+  const mobileQuery = window.matchMedia("(max-width: 900px)");
+
+  const setTocState = (expanded) => {
+    tocToggle.setAttribute("aria-expanded", String(expanded));
+    if (expanded) {
+      tocMenu.removeAttribute("hidden");
+    } else {
+      tocMenu.setAttribute("hidden", "");
+    }
+  };
+
+  const syncTocMode = () => {
+    if (mobileQuery.matches) {
+      setTocState(false);
+    } else {
+      setTocState(true);
+    }
+  };
+
+  syncTocMode();
+  mobileQuery.addEventListener("change", syncTocMode);
+
+  // Toggle del menú en móvil
+  tocToggle.addEventListener("click", (e) => {
+    if (!mobileQuery.matches) return;
+
+    e.preventDefault();
+    const expanded = tocToggle.getAttribute("aria-expanded") === "true";
+    setTocState(!expanded);
+  });
+
+  // Cerrar el menú al clickear un link
+  tocMenu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      if (mobileQuery.matches) {
+        setTocState(false);
+      }
+    });
+  });
+
+  // Resalta sección activa en la tabla de contenidos.
+  const tocLinks = Array.from(tocMenu.querySelectorAll('a[href^="#"]'));
+  const tocSections = tocLinks
+    .map((a) => document.querySelector(a.getAttribute("href")))
+    .filter(Boolean);
+
+  if (tocLinks.length === 0 || tocSections.length === 0) return;
+
+  const setActiveTocLink = (id) => {
+    tocLinks.forEach((a) => {
+      const isActive = a.getAttribute("href") === `#${id}`;
+      a.classList.toggle("is-active", isActive);
+    });
+  };
+
+  const tocObserver = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+      if (visible?.target?.id) setActiveTocLink(visible.target.id);
+    },
+    {
+      root: null,
+      rootMargin: "-22% 0px -65% 0px",
+      threshold: [0.1, 0.2, 0.35, 0.5, 0.65],
+    },
+  );
+
+  tocSections.forEach((section) => tocObserver.observe(section));
+})();
+
+// Back to top button
+(() => {
+  const backToTop = document.querySelector(".back-to-top");
+  if (!backToTop) return;
+
+  window.addEventListener("scroll", () => {
+    backToTop.hidden = window.scrollY < 300;
+  });
+
+  backToTop.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+})();
+
 // Back to top
 (() => {
   const btn = document.querySelector(".back-to-top");
